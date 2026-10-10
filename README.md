@@ -1,20 +1,23 @@
 ### Практична робота 5: Розробка віджетів у Flutter
 
 # Бібліотека віджетів та компонентів Flutter
+
 Сучасний мобільний додаток на Flutter, створений на основі компоненти-орієнтованого підходу. Проєкт демонструє надійне управління станом, кастомні повторно використовувані віджети (AnimatedCounter, ProductCard, ProfileWidget, CustomButton) та чисті архітектурні патерни.
 
 ## Архітектура додатку
+
 Проєкт побудований за принципами Feature-First / Layered Hybrid Architecture, що забезпечує чіткий розподіл відповідальності та реактивний потік даних:
 
-*Presentation Layer - lib/screens/, lib/widgets/: Відповідає за рендеринг інтерфейсу, анімації та обробку взаємодії з користувачем. Складається з stateless та stateful віджетів із використанням адаптивних версток (Expanded, Column, Row).
+\*Presentation Layer - lib/screens/, lib/widgets/: Відповідає за рендеринг інтерфейсу, анімації та обробку взаємодії з користувачем. Складається з stateless та stateful віджетів із використанням адаптивних версток (Expanded, Column, Row).
 
-* State Management Layer - lib/utils/app_state.dart: Базується на патерні ChangeNotifier у ролі Єдиного джерела правди (Single Source of Truth). Забезпечує незмінні оновлення стану та миттєву розсилку сповіщень слухачам через notifyListeners().
+- State Management Layer - lib/utils/app_state.dart: Базується на патерні ChangeNotifier у ролі Єдиного джерела правди (Single Source of Truth). Забезпечує незмінні оновлення стану та миттєву розсилку сповіщень слухачам через notifyListeners().
 
-* Data & Models Layer - lib/models/: Інкапсулює основні сутності (Product, User), гарантуючи безпеку типів та нуль-безпеку.
+- Data & Models Layer - lib/models/: Інкапсулює основні сутності (Product, User), гарантуючи безпеку типів та нуль-безпеку.
 
-* lib/utils/themes.dart, lib/utils/constants.dart: Централізовані дизайн-токени для підтримки світлої/темної тем та консистентного стилю.
+- lib/utils/themes.dart, lib/utils/constants.dart: Централізовані дизайн-токени для підтримки світлої/темної тем та консистентного стилю.
 
 ## Схеми потоків стану
+
 ### Потік стану лічильника та анімацій
 
 ```
@@ -87,6 +90,7 @@ MyApp (MaterialApp)
 ```
 
 ## Контракт API
+
 Оскільки додаток працює з локальними структурами даних, ці контракти повністю відповідають стандартним схемам RESTful API для сучасних e-commerce систем та профілів.
 
 ### Схема моделі продукту
@@ -100,7 +104,7 @@ MyApp (MaterialApp)
 }
 ```
 
-* Реалізація у Dart* Клас Product у lib/models/product.dart із обов'язковими параметрами конструктора та незмінними полями.
+- Реалізація у Dart\* Клас Product у lib/models/product.dart із обов'язковими параметрами конструктора та незмінними полями.
 
 ### Схема моделі користувача (/api/v1/user/profile)
 
@@ -112,29 +116,31 @@ MyApp (MaterialApp)
 }
 ```
 
-* Реалізація у Dart: Клас User у lib/models/user.dart.
+- Реалізація у Dart: Клас User у lib/models/user.dart.
 
 ### Контракт сховища стану
 
-| Метод / Геттер | Тип повернення | Опис |
-| :--- | :--- | :--- |
-| `currentUser` | `User?` | Поточний авторизований профіль користувача. |
-| `favoriteProducts` | `List<Product>` | Незмінний список улюблених товарів користувача. |
-| `cartItemsCount` | `int` | Загальна кількість товарів, доданих до кошика. |
-| `toggleFavorite(Product)` | `void` | Додає або видаляє товар з обраного та сповіщає слухачів. |
-| `addToCart(Product)` | `void` | Збільшує лічильник кошика та сповіщає слухачів. |
-
+| Метод / Геттер            | Тип повернення  | Опис                                                     |
+| :------------------------ | :-------------- | :------------------------------------------------------- |
+| `currentUser`             | `User?`         | Поточний авторизований профіль користувача.              |
+| `favoriteProducts`        | `List<Product>` | Незмінний список улюблених товарів користувача.          |
+| `cartItemsCount`          | `int`           | Загальна кількість товарів, доданих до кошика.           |
+| `toggleFavorite(Product)` | `void`          | Додає або видаляє товар з обраного та сповіщає слухачів. |
+| `addToCart(Product)`      | `void`          | Збільшує лічильник кошика та сповіщає слухачів.          |
 
 ## Інструкція з запуску
+
 Запуск застосунку
-* У VS Code обрати з No Device на Start Menium Phone API 35 mobile emulator(cold boot)
-* Після запуску у консолі виконати futter run
+
+- У VS Code обрати з No Device на Start Menium Phone API 35 mobile emulator(cold boot)
+- Після запуску у консолі виконати futter run
 
 Перевірка тестів
-* У VS Code обрати з No Device на Start Menium Phone API 35 mobile emulator(cold boot)
-* Після запуску у консолі виконати flutter test
-* flutter test integration_test/app_flow_test.dart
+
+- У VS Code обрати з No Device на Start Menium Phone API 35 mobile emulator(cold boot)
+- Після запуску у консолі виконати flutter test
+- flutter test integration_test/app_flow_test.dart
 
 ## Використання ШІ
-У рамках практичної ШІ був використаний для закріплення знать у використанні Futter віджетів.
 
+У рамках практичної ШІ був використаний для закріплення знать у використанні Futter віджетів. Також під час виконання роботи було зроблено декілька помилок у коді які було знайти важко тривалий час, для прискорення знаходження був використаний ШІ (виправлялося власноруч).
