@@ -1,0 +1,19 @@
+name: flutter_widgets_pivovar
+description: "A new Flutter project."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: "^3.13.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # інші ваші залежності...
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
