@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/user.dart';
 
 class ProfileWidget extends StatelessWidget {
@@ -7,11 +8,11 @@ class ProfileWidget extends StatelessWidget {
   final bool isCompact;
 
   const ProfileWidget({
-    Key? key,
+    super.key,
     required this.user,
     this.onEditPressed,
     this.isCompact = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,7 @@ class ProfileWidget extends StatelessWidget {
     return Card(
       elevation: isCompact ? 2 : 4,
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: EdgeInsets.all(isCompact ? 12.0 : 16.0),
         child: isCompact ? _buildCompactView(theme) : _buildExpandedView(theme),
@@ -36,11 +35,14 @@ class ProfileWidget extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 24,
-          backgroundImage: user.avatarUrl != null 
-              ? NetworkImage(user.avatarUrl!) 
+          backgroundImage: user.avatarUrl != null
+              ? NetworkImage(user.avatarUrl!)
               : null,
-          child: user.avatarUrl == null 
-              ? Text(user.name[0], style: const TextStyle(fontWeight: FontWeight.bold))
+          child: user.avatarUrl == null
+              ? Text(
+                  user.name[0],
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                )
               : null,
         ),
         const SizedBox(width: 12),
@@ -61,7 +63,9 @@ class ProfileWidget extends StatelessWidget {
               Text(
                 user.email,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+                  color: theme.textTheme.bodySmall?.color?.withValues(
+                    alpha: 0.7,
+                  ),
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -87,11 +91,17 @@ class ProfileWidget extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 36,
-              backgroundImage: user.avatarUrl != null 
-                  ? NetworkImage(user.avatarUrl!) 
+              backgroundImage: user.avatarUrl != null
+                  ? NetworkImage(user.avatarUrl!)
                   : null,
-              child: user.avatarUrl == null 
-                  ? Text(user.name[0], style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold))
+              child: user.avatarUrl == null
+                  ? Text(
+                      user.name[0],
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
                   : null,
             ),
             const SizedBox(width: 16),
@@ -109,7 +119,9 @@ class ProfileWidget extends StatelessWidget {
                   Text(
                     user.email,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7),
+                      color: theme.textTheme.bodyMedium?.color?.withValues(
+                        alpha: 0.7,
+                      ),
                     ),
                   ),
                 ],
